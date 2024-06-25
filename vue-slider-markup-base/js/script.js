@@ -5,7 +5,8 @@ const { createApp } = Vue;
 
 createApp({
     data() {
-        return {   
+        return {  
+            activeNumber : 0,
             slides: [
                 {
                         image: 'img/01.webp',
@@ -29,12 +30,34 @@ createApp({
                         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                     }
             ]
-                
+
+            
+         // Al click le frecce fanno scorrere le immagini 
+
+         
+        }
+    },
+    methods: {
+        nextImg(){
+            // logica del funzionamento al click di next 
+            // definiamo il valore di activeNumber con il this 
+            this.activeNumber++;
+            if(this.activeNumber > this.slides.image.lenght -1 ){
+                // facciamo ricomincia il ciclo definendo activeNumber 
+                this.activeNumber = 0;
+            }
+        },
+
+        preImg(){
+            this.activeNumber--;
+            if(this.activeNumber < 0){
+                this.activeNumber = this.slides.image.lenght -1
+            }
         }
     }
 }).mount('#app');
 
-// Al click le frecce fanno scorrere le immagini 
+
 
 // Assegnare la classe active ogni volta che l'immagine compare nella pagina principale 
 
